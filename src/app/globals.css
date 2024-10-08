@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --border-radius: var(--mui-shape-borderRadius);
+  --border-color: var(--mui-palette-divider);
+  --primary-color: var(--mui-palette-primary-main);
+  --background-color: var(--mui-palette-background-default);
+  --header-height: 64px;
+  --header-z-index: var(--mui-zIndex-appBar);
+  --footer-z-index: 10;
+  --customizer-z-index: var(--mui-zIndex-drawer);
+  --search-z-index: var(--mui-zIndex-tooltip);
+  --drawer-z-index: var(--mui-zIndex-drawer);
+  --backdrop-color: rgb(var(--mui-mainColorChannels-light) / 0.5);
+}
+
+[data-mui-color-scheme='dark'] {
+  --backdrop-color: rgb(21 16 43 / 0.6);
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+  border-style: solid;
+  border-color: theme('borderColor.DEFAULT', currentColor);
+}
+
+html {
+  display: flex;
+  inline-size: 100%;
+  min-block-size: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul:not([class]) {
+  margin-block: 1rem;
+  padding-inline-start: 40px;
+}
+
+.ps__rail-y {
+  inset-inline-end: 0 !important;
+  inset-inline-start: auto !important;
+  & .ps__thumb-y {
+    inset-inline-end: 3px !important;
+    inset-inline-start: auto !important;
+    background-color: var(--mui-palette-divider);
+    inline-size: 6px;
+    &:hover,
+    &:focus,
+    &.ps--clicking {
+      background-color: var(--mui-palette-action-disabled) !important;
+    }
+  }
+  &:hover,
+  &:focus,
+  &.ps--clicking {
+    background-color: var(--mui-palette-action-hover) !important;
+  }
+  &:hover,
+  &:focus,
+  &.ps--clicking {
+    .ps__thumb-y {
+      background-color: var(--mui-palette-action-disabled) !important;
+    }
+  }
+}
+
+.ts-vertical-nav-root {
+  .ps__thumb-y {
+    inline-size: 4px;
+    &:hover,
+    &:focus,
+    &.ps--clicking {
+      inline-size: 6px;
+    }
+  }
+  .ps__rail-y {
+    inline-size: 10px;
+    &:hover,
+    &:focus,
+    &.ps--clicking {
+      background-color: transparent !important;
+      .ps__thumb-y {
+        inline-size: 6px;
+      }
+    }
+  }
+}
+
+:where([class^='ri-']) {
+  font-size: 1.5rem;
+}
+
+code {
+  font-family: inherit;
+  padding-block: 2px;
+  padding-inline: 4px;
+  border-radius: 4px;
+  font-size: 90%;
+  color: var(--mui-palette-info-main);
+  background-color: rgb(var(--mui-palette-info-mainChannel) / 0.08);
+  border: 0;
+}
+
+
+.mining-bars-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 30px;
+  height: 150px;
+  /* Optionally add a background color to make it easier to see the bars */
+  /* background-color: rgba(0, 0, 0, 0.05); */
+}
+
+.mining-bar {
+  width: 12px;
+  border-radius: 13px;
+  transition: transform 0.3s ease-in-out;
+  transform-origin: bottom;
+    flex-shrink: 0; /* Prevent shrinking to maintain gap consistency */
+}
+
+.bar-wrapper {
+  width: 12px; /* Fixed width of the wrapper */
+  overflow: visible; /* Allow the growing bar to overflow */
+}
+
+.mining-bar.active {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(2.5);
+  }
+  100% {
+    transform: scaleX(1);
+}
+}
+
+
+.growing-button {
+  animation: grow 2s infinite; /* Infinite animation, every 1 second */
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1); /* Original size */
+  }
+  50% {
+    transform: scale(1.05); /* Increase size by 20% */
+  }
+  100% {
+    transform: scale(1); /* Back to original size */
+  }
+}
